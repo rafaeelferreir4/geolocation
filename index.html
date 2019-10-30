@@ -44,6 +44,7 @@
       <option value="alegrete, rs">Alegrete, rs</option>
       <option value="sao jose do norte, rs">São jose do norte</option>
     </select>
+    <button>Calcular</button>
     </div>
     <p id="p1"></p>
     <p id="p2"></p>
@@ -66,8 +67,7 @@
         var onChangeHandler = function() {
           calculateAndDisplayRoute(directionsService, directionsDisplay);
         };
-        document.getElementById('start').addEventListener('change', onChangeHandler);
-        document.getElementById('end').addEventListener('change', onChangeHandler);
+        document.querySelector('button').addEventListener('click', onChangeHandler);
       }
       function callback(pos) {
         const latitude = pos.coords.latitude;
@@ -75,7 +75,7 @@
         p1.textContent = latitude
         p2.textContent = longitude
       }
-      console.log(navigator.geolocation.getCurrentPosition(callback));
+      navigator.geolocation.getCurrentPosition(callback);
       
       function calculateAndDisplayRoute(directionsService, directionsDisplay) {
         directionsService.route({
